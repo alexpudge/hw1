@@ -65,7 +65,7 @@
 -- Turns column mode on but headers off
 .mode column
 .headers off
-.width 20 20 20 20 20 
+
 
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
@@ -124,6 +124,8 @@ VALUES (1, 1, "Bruce Wayne"), (1, 2, "Alfred"), (1, 3, "Ra's Al Ghul"), (1, 4, "
 -- The SQL statement for the movies output
 -- TODO!
 
+.width 21 4 8 20
+
 SELECT title, year_released, mpaa_rating, full_name
 FROM movies
 INNER JOIN directors 
@@ -137,6 +139,8 @@ INNER JOIN directors
 
 -- The SQL statement for the cast output
 -- TODO!
+
+.width 21 20 20 20 20 
 
 SELECT title, full_name, character_name
 from roles
