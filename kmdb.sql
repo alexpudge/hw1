@@ -65,6 +65,8 @@
 -- Turns column mode on but headers off
 .mode column
 .headers off
+.width 20 20 20 20 20 
+
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 
@@ -126,7 +128,6 @@ SELECT title, year_released, mpaa_rating, full_name
 FROM movies
 INNER JOIN directors 
     ON directors.id = movies.directors_id;
-
 -- Prints a header for the cast output
 .print ""
 .print "Top Cast"
