@@ -69,12 +69,18 @@
 -- Drop existing tables, so you'll start fresh each time this script is run.
 
 DROP TABLE IF EXISTS directors;
+DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS roles;
 
 -- Create new tables, according to your domain model
 
 CREATE TABLE directors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  full_name TEXT
+);
+
+CREATE TABLE actors (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   full_name TEXT
 );
@@ -90,7 +96,7 @@ CREATE TABLE movies (
 CREATE TABLE roles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movies_id INTEGER,
-    actor_name TEXT,
+    actors_id INTEGER,
     character_name TEXT
 );
 
@@ -100,8 +106,11 @@ CREATE TABLE roles (
 INSERT INTO directors (full_name)
 VALUES ("Christopher Nolan");
 
+INSERT INTO actors (full_name)
+VALUES ("Christian Bale"), ("Michael Caine"), ("Liam Neeson"), ("Katie Holmes"), ("Gary Oldman"), ("Heath Ledger"); 
+
 INSERT INTO movies (title, year_released, mpaa_rating, directors_id)
-VALUES ("Batman Begins", 2005, "PG-13", 1);
+VALUES ("Batman Begins", 2005, "PG-13", 1), ("The Dark Knight", 2008, "PG-13", 1), ("The Dark Knight Rises", 2012, "PG-13", 1);
 
 
 -- Prints a header for the movies output
@@ -112,6 +121,11 @@ VALUES ("Batman Begins", 2005, "PG-13", 1);
 -- The SQL statement for the movies output
 -- TODO!
 
+SELECT title, year_released, mpaa_rating, full_name
+FROM movies
+INNER JOIN directors 
+    ON directors.id = movies.directors_id;
+
 -- Prints a header for the cast output
 .print ""
 .print "Top Cast"
@@ -121,3 +135,7 @@ VALUES ("Batman Begins", 2005, "PG-13", 1);
 
 -- The SQL statement for the cast output
 -- TODO!
+
+
+SELECT id, full_name
+FROM actors; 
